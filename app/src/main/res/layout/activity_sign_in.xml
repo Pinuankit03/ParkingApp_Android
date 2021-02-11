@@ -40,7 +40,7 @@
             android:textColorHint="@color/white"
             android:drawablePadding="10dp"
             android:layout_marginTop="15dp"
-            android:hint="@string/email"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:padding="10dp"
             android:singleLine="true"
