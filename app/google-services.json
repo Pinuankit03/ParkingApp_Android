@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "591122535661",
+    "project_id": "parkingapp-cbbea",
+    "storage_bucket": "parkingapp-cbbea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:591122535661:android:be3db560738654647a28e4",
+        "android_client_info": {
+          "package_name": "com.example.parkingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "591122535661-df5ud5u4v5g5pbn16f39e4j21jcjcb9m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASYH9SufdWQ_azfTKAeGnFUOz3nFeSPuk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "591122535661-df5ud5u4v5g5pbn16f39e4j21jcjcb9m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

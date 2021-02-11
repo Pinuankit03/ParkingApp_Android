@@ -1,0 +1,74 @@
+package com.example.parkingapp.ui;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.parkingapp.R;
+import com.example.parkingapp.adapter.ParkingListAdapter;
+import com.example.parkingapp.model.Parking;
+import com.example.parkingapp.viewmodels.ParkingViewModel;
+import com.example.parkingapp.viewmodels.UserViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class HomeFragment extends Fragment {
+    private final String TAG = this.getClass().getCanonicalName();
+   private ParkingListAdapter adapter;
+    private ArrayList<Parking> parkingArrayList;
+    private ParkingViewModel parkingViewModel;
+    private UserViewModel userViewModel;
+    private String userID;
+    private RecyclerView rvParking;
+    private LinearLayoutManager viewManager;
+
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+
+        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        //final TextView textView = root.findViewById(R.id.recycleView);
+
+        this.parkingViewModel = ParkingViewModel.getInstance();
+        this.userViewModel = UserViewModel.getInstance();
+        this.userID = this.userViewModel.getUserRepository().loggedInUserID.getValue();
+
+        this.rvParking = root.findViewById(R.id.recycleView);
+        this.parkingArrayList = new ArrayList<>();
+        this.adapter = new ParkingListAdapter(getActivity().getApplicationContext(), parkingArrayList);
+        this.viewManager = new LinearLayoutManager(getActivity().getApplicationContext());
+
+
+        this.rvParking.setAdapter(this.adapter);
+        this.rvParking.setLayoutManager(this.viewManager);
+        this.rvParking.setHasFixedSize(true);
+        this.rvParking.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(), DividerItemDecoration.VERTICAL));
+
+        this.parkingViewModel.getAllParking(userID);
+
+        this.parkingViewModel.getParkingRepository().parkingItems.observe(getActivity(), new Observer<List<Parking>>() {
+            @Override
+            public void onChanged(List<Parking> checklists) {
+                if (checklists != null){
+                    Log.e(TAG, "Data Changed : " + checklists.toString());
+                    parkingArrayList.addAll(checklists);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
+
+        return root;
+    }
+}

@@ -1,0 +1,66 @@
+package com.example.parkingapp.adapter;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.parkingapp.R;
+import com.example.parkingapp.model.Parking;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+
+
+public class ParkingListAdapter extends RecyclerView.Adapter<ParkingListAdapter.ParkinglistViewHolder> {
+    private Context context;
+    private ArrayList<Parking> parkingsList;
+
+    public ParkingListAdapter(Context context, ArrayList<Parking> parkingsList) {
+        this.context = context;
+        this.parkingsList = parkingsList;
+    }
+
+    @NonNull
+    @Override
+    public ParkingListAdapter.ParkinglistViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.parking_list_item, null, false);
+        return new ParkinglistViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ParkinglistViewHolder holder, int position) {
+        holder.bind(parkingsList.get(position));
+    }
+
+    @Override
+    public int getItemCount() {
+        return parkingsList.size();
+    }
+
+    public static class ParkinglistViewHolder extends RecyclerView.ViewHolder {
+        TextView txtAddress, txtParkingDate,txtParkingHours,txtCarPlateNo;
+
+        public ParkinglistViewHolder(@NonNull View itemView) {
+            super(itemView);
+            txtAddress = itemView.findViewById(R.id.tvParkingAddress);
+            txtParkingDate = itemView.findViewById(R.id.tvParkingDate);
+            txtParkingHours = itemView.findViewById(R.id.tvParkingHours);
+            txtCarPlateNo = itemView.findViewById(R.id.tvCarPlateNo);
+        }
+
+        public void bind(Parking parking) {
+            txtAddress.setText(parking.getStreetAddress());
+           // txtParkingDate.setText(parking.getParkingDate());
+            txtParkingHours.setText(parking.getHoursToPark());
+            txtCarPlateNo.setText(parking.getCarPlateNo());
+        }
+    }
+}
+

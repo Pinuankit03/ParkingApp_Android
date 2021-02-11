@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ParkingDetailActivity">
+
+    <TextView
+        android:id="@+id/tvCarPlateNo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="15dp"
+        android:gravity="center"
+        android:text="Car Plate No : 12345"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+<LinearLayout
+    android:id="@+id/linearAdd"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="30dp"
+    android:gravity="center"
+    app:layout_constraintTop_toBottomOf="@+id/tvCarPlateNo">
+
+    <ImageView
+        android:id="@+id/imgLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/ic_partial_secure" />
+
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="address hdfhsgfhsgdfhsgdfhs"
+        android:textColor="@color/black"
+        android:layout_marginLeft="10dp"
+        android:textSize="16dp" />
+</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearBuildingCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/linearAdd">
+
+        <TextView
+            android:id="@+id/txtBlockNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Building Code "
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/tvBuildingCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8111"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearParkingDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/linearBuildingCode">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Parking Date "
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/tvParkingDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2021-01-09"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearNoHost"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/linearParkingDate">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Suit No of Host "
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/tvSuiteHost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvHours"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Hours"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="18dp"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/linearNoHost" />
+
+    <Button
+        android:id="@+id/btnViewLoc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="View your Parking Location"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvHours"></Button>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

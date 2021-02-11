@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">ParkingApp</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_logout">Logout</string>
+
+    <string name="parking_list">Parking List</string>
+    <string name="parking_add">Add Parking</string>
+    <string name="update_profile">Update Profile</string>
+
+    <string name="email">Email</string>
+    <string name="passowrd">Passowrd</string>
+    <string name="save_password">save password</string>
+    <string name="login_btn">LOGIN</string>
+    <string name="sign_up">Sign Up</string>
+
+    <string name="hour_prompt">Choose Parking Hours</string>
+    <string-array name="hours_arrays">
+        <item>1-hour or less</item>
+        <item>4-hour</item>
+        <item>12-hour</item>
+        <item>24-hour</item>
+    </string-array>
+
+</resources>
