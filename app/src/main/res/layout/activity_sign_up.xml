@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/icon"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +33,7 @@
         android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/img"
         android:padding="8dp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="15dp" />
 
     <EditText
         android:layout_width="0dp"
@@ -51,7 +51,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/white"
         android:padding="8dp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="15dp" />
 
     <EditText
         android:layout_width="0dp"
@@ -69,7 +69,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/white"
         android:padding="8dp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="15dp" />
 
     <EditText
         android:id="@+id/ed_password"
@@ -87,7 +87,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/white"
         android:padding="8dp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="15dp" />
 
     <EditText
         android:layout_width="0dp"
@@ -105,7 +105,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/white"
         android:padding="8dp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="15dp" />
 
     <EditText
         android:layout_width="0dp"
@@ -123,7 +123,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/white"
         android:padding="8dp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="15dp" />
 
     <EditText
         android:id="@+id/ed_contactNo"
@@ -141,7 +141,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/white"
         android:padding="8dp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="15dp" />
 
     <Button
         android:id="@+id/btn_signUp"

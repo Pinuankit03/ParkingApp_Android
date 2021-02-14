@@ -36,9 +36,14 @@ public class PreferenceSettings {
         // Clearing all data from Shared Preferences
         try {
 //            // Yes button clicked, do something
+
+
 //            editor.clear();
 //            editor.commit();
             context.getSharedPreferences(TAG, Context.MODE_PRIVATE).edit().remove(LOGIN).commit();
+            context.getSharedPreferences(TAG, Context.MODE_PRIVATE).edit().remove(userEmail).commit();
+            context.getSharedPreferences(TAG, Context.MODE_PRIVATE).edit().remove(userID).commit();
+            context.getSharedPreferences(TAG, Context.MODE_PRIVATE).edit().remove(userName).commit();
 
             Intent i = new Intent(context, SignInActivity.class);
             // Closing all the Activities

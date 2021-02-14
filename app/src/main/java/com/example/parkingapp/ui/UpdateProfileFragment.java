@@ -12,8 +12,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.navigation.Navigation;
 
 import com.example.parkingapp.R;
+import com.example.parkingapp.common.PreferenceSettings;
 import com.example.parkingapp.common.ValidateData;
 import com.example.parkingapp.model.User;
 import com.example.parkingapp.viewmodels.UserViewModel;
@@ -26,11 +28,13 @@ public class UpdateProfileFragment extends Fragment implements View.OnClickListe
     private EditText edtFirstName, edtLastname, edtEmail, edtContactNo, edtCarPlateNo;
     private Button btnUpdateProfile;
     private User userData;
+    private PreferenceSettings mPreferenceSettings;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_update_profile, container, false);
+        mPreferenceSettings = new PreferenceSettings(getActivity());
         this.edtFirstName = root.findViewById(R.id.edFirstName);
         this.edtLastname = root.findViewById(R.id.edLastName);
         this.edtEmail = root.findViewById(R.id.edEmail);
@@ -40,8 +44,8 @@ public class UpdateProfileFragment extends Fragment implements View.OnClickListe
         this.btnUpdateProfile.setOnClickListener(this);
 
         this.userViewModel = UserViewModel.getInstance();
-        this.userID = this.userViewModel.getUserRepository().loggedInUserID.getValue();
-        Log.e("userID update profile", userID);
+        this.userID = mPreferenceSettings.getUserID();
+//        Log.e("userID update profile", userID);
 
         this.userViewModel.getUserByID(userID);
         this.userViewModel.getUserRepository().userData.observe(getActivity(), new Observer<User>() {
@@ -54,6 +58,7 @@ public class UpdateProfileFragment extends Fragment implements View.OnClickListe
                 edtContactNo.setText(user.getContactNo());
                 edtEmail.setText(user.getEmail());
                 edtCarPlateNo.setText(user.getCarPlateNo());
+
             }
         });
         return root;
@@ -74,7 +79,10 @@ public class UpdateProfileFragment extends Fragment implements View.OnClickListe
                         updatedUser.setPassword(userData.getPassword());
                         updatedUser.setActive(true);
                         this.userViewModel.updateProfile(userID, updatedUser);
+                        mPreferenceSettings.setUserEmail(updatedUser.getEmail());
+                        mPreferenceSettings.setUserName(updatedUser.getFirstName() + " " + updatedUser.getLastName());
                         Toast.makeText(getActivity(), "Updated Successfully.", Toast.LENGTH_SHORT).show();
+                        Navigation.findNavController(getView()).popBackStack();
                     }
                 }
                 default:

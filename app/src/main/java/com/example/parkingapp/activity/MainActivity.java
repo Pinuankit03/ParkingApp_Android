@@ -43,11 +43,14 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         this.userViewModel = UserViewModel.getInstance();
-        this.userID = this.userViewModel.getUserRepository().loggedInUserID.getValue();
-        Log.e("userID", userID);
 
-        mPreferenceSettings.setUserID(userID);
-
+        if (mPreferenceSettings.getUserID() == null || mPreferenceSettings.getUserID() == "") {
+            this.userID = this.userViewModel.getUserRepository().loggedInUserID.getValue();
+            Log.e("userID", userID);
+            mPreferenceSettings.setUserID(userID);
+        } else {
+            userID = mPreferenceSettings.getUserID();
+        }
         this.drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -87,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_logout:
                 logout();
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -99,10 +101,9 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        userViewModel.getUserRepository().signInStatus.postValue("");
                         mPreferenceSettings.logoutUser();
                         finish();
-
                     }
                 }).setNegativeButton("No", null).show();
     }

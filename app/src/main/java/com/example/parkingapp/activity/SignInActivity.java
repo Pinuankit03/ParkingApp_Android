@@ -1,8 +1,5 @@
 package com.example.parkingapp.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +9,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import com.example.parkingapp.R;
 import com.example.parkingapp.common.PreferenceSettings;
@@ -35,6 +35,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
         this.userViewModel = UserViewModel.getInstance();
         mPreferenceSettings = new PreferenceSettings(this);
+
         if (mPreferenceSettings.getIsLogin()) {
             Intent mainIntent = new Intent(this, MainActivity.class);
             startActivity(mainIntent);
@@ -52,6 +53,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
         this.progressBar = findViewById(R.id.progressBar);
 
+
         this.userViewModel.getUserRepository().signInStatus.observe(this, new Observer<String>() {
             @Override
             public void onChanged(String status) {
@@ -63,7 +65,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                     progressBar.setVisibility(View.VISIBLE);
                 }else if (status.equals("FAILURE")){
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(getApplicationContext(), "Please provide valid username and password!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Please provide valid username and password.", Toast.LENGTH_LONG).show();
                 }
             }
         });

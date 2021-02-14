@@ -17,12 +17,13 @@ import com.example.parkingapp.model.Parking;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class ParkingListAdapter extends RecyclerView.Adapter<ParkingListAdapter.ParkinglistViewHolder> {
     private Context context;
     private ArrayList<Parking> parkingsList;
-    static DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+    static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     private OnParkingClickListener clickListener;
 
     public ParkingListAdapter(Context context, ArrayList<Parking> parkingsList, OnParkingClickListener clickListener) {
@@ -62,7 +63,10 @@ public class ParkingListAdapter extends RecyclerView.Adapter<ParkingListAdapter.
         }
 
         public void bind(Parking parking, OnParkingClickListener clickListener) {
-            String strDate = dateFormat.format(parking.getParkingDate());
+
+
+            Date d = parking.getParkingDate();
+            String strDate = dateFormat.format(d);
             txtAddress.setText(parking.getStreetAddress());
             // txtParkingDate.setText(parking.getParkingDate());
             txtParkingHours.setText(parking.getHoursToPark());

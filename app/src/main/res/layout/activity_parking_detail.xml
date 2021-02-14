@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".activity.ParkingDetailActivity">
 
+    <include
+        android:id="@+id/appbar"
+        layout="@layout/app_toolbar"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tvCarPlateNo"
         android:layout_width="0dp"
@@ -20,42 +25,47 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-<LinearLayout
-    android:id="@+id/linearAdd"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    app:layout_constraintStart_toStartOf="parent"
-    android:layout_marginStart="20dp"
-    android:layout_marginTop="30dp"
-    android:gravity="center"
-    app:layout_constraintTop_toBottomOf="@+id/tvCarPlateNo">
+        app:layout_constraintTop_toBottomOf="@+id/appbar" />
 
-    <ImageView
-        android:id="@+id/imgLocation"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearAdd"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_location"
-        android:backgroundTint="@color/black" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        android:background="@android:color/darker_gray"
+        android:gravity="center"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCarPlateNo">
 
-    <TextView
-        android:id="@+id/tvAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="@color/black"
-        android:layout_marginLeft="10dp"
-        android:textSize="16sp" />
-</LinearLayout>
+        <ImageView
+            android:id="@+id/imgLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_location"
+            android:backgroundTint="@color/black" />
+
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearBuildingCode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearAdd">
 
         <TextView
@@ -69,20 +79,20 @@
             android:id="@+id/tvBuildingCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text=""
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:layout_marginLeft="10dp"/>
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearParkingDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearBuildingCode">
 
         <TextView
@@ -95,20 +105,20 @@
             android:id="@+id/tvParkingDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text=""
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:layout_marginLeft="10dp"/>
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearNoHost"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearParkingDate">
 
         <TextView
@@ -121,38 +131,38 @@
             android:id="@+id/tvSuiteHost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text=""
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:layout_marginLeft="10dp"/>
+            android:textSize="18sp" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/tvHours"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
         android:text=""
         android:textColor="@android:color/holo_red_dark"
         android:textSize="18sp"
-        android:layout_marginLeft="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearNoHost" />
 
     <Button
         android:id="@+id/btnViewLoc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="View your Parking Location"
-        android:layout_marginEnd="20dp"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:text="View your Parking Location"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHours"></Button>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

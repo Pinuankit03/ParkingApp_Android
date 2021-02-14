@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment implements OnParkingClickListener {
         this.parkingViewModel = ParkingViewModel.getInstance();
         mPreferenceSettings = new PreferenceSettings(getActivity());
 
-       this.userID = mPreferenceSettings.getUserID();
+        this.userID = mPreferenceSettings.getUserID();
         this.rvParking = root.findViewById(R.id.recycleView);
         this.parkingArrayList = new ArrayList<>();
         this.adapter = new ParkingListAdapter(getActivity().getApplicationContext(), parkingArrayList, this);

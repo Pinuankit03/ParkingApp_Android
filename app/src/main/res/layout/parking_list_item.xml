@@ -12,6 +12,7 @@
         android:id="@+id/linearMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:orientation="vertical">
 
     <LinearLayout
@@ -95,7 +96,7 @@
             android:id="@+id/tvCarPlateNo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="@color/teal_700"
             android:textSize="18sp"
             android:paddingLeft="15dp"
             android:paddingBottom="3dp"

@@ -33,9 +33,15 @@
         <activity
             android:name=".activity.MapsActivity"
             android:label="@string/title_activity_maps"></activity>
-        <activity android:name=".activity.ParkingDetailActivity" />
-        <activity android:name=".activity.SignUpActivity" />
-        <activity android:name=".activity.SignInActivity">
+        <activity
+            android:name=".activity.ParkingDetailActivity"
+            android:theme="@style/Theme.ParkingApp.NoActionBar" />
+        <activity
+            android:name=".activity.SignUpActivity"
+            android:theme="@style/Theme.ParkingApp.NoActionBar" />
+        <activity
+            android:name=".activity.SignInActivity"
+            android:theme="@style/Theme.ParkingApp.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
