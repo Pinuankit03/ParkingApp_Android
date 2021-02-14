@@ -3,12 +3,14 @@ package com.example.parkingapp.common;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+
 import com.example.parkingapp.activity.SignInActivity;
 
 public class PreferenceSettings {
 
     private String LOGIN = "login";
     private String userName = "username";
+    private String userID = "userID";
     private Context context;
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
@@ -53,11 +55,21 @@ public class PreferenceSettings {
     }
 
     public String getUserName() {
-        return  sp.getString(this.userName, "");
+        return sp.getString(this.userName, "");
     }
 
     public void setUserName(String userName) {
         sp.edit().putString(this.userName, userName).commit();
+    }
+
+    public String getUserID() {
+        return sp.getString(userID, "");
+
+    }
+
+    public void setUserID(String id) {
+        sp.edit().putString(userID, id).commit();
+
     }
 
 

@@ -2,8 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="edittext_bg">#77009688</color>
-    <color name="colorPrimary">#00887e</color>
+    <color name="screenBg">#884AAC7D</color>
+
+
+    <color name="colorPrimary">#4AAC7D</color>
     <color name="purple_700">#00887e</color>
     <color name="purple_500">#00887e</color>
     <color name="purple_200">#00887e</color>

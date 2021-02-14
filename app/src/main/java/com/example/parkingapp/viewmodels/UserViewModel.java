@@ -25,11 +25,19 @@ public class UserViewModel extends ViewModel {
         return userRepository;
     }
 
-    public void validateUser(String email, String password){
-        if (!email.isEmpty()){
-            if (!password.isEmpty()){
+    public void validateUser(String email, String password) {
+        if (!email.isEmpty()) {
+            if (!password.isEmpty()) {
                 this.userRepository.getUser(email, password);
             }
         }
+    }
+
+    public void getUserByID(String userID) {
+        this.userRepository.getUserById(userID);
+    }
+
+    public void updateProfile(String userID, User user) {
+        this.userRepository.updateProfile(userID, user);
     }
 }

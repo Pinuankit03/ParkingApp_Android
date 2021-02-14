@@ -18,13 +18,20 @@ public class ParkingViewModel extends ViewModel {
         return parkingRepository;
     }
 
-    private ParkingViewModel(){}
+    private ParkingViewModel() {
+    }
 
-    public void addParkingItem(String userID, Parking parking){
+    public void addParkingItem(String userID, Parking parking) {
         this.parkingRepository.addParkingItem(userID, parking);
     }
 
-    public void getAllParking(String userID){
+    public void getAllParking(String userID) {
         this.parkingRepository.getAllParking(userID);
     }
+
+    public void getEachParking(String userId, String parkingID) {
+        this.parkingRepository.getEachParking(userId, parkingID);
+    }
+
+
 }

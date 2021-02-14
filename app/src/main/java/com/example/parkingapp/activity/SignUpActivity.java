@@ -1,20 +1,17 @@
 package com.example.parkingapp.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.parkingapp.R;
 import com.example.parkingapp.common.ValidateData;
 import com.example.parkingapp.model.User;
 import com.example.parkingapp.viewmodels.UserViewModel;
-
-import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -72,13 +69,14 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         //Save User to DB
         this.userViewModel.addUser(newUser);
+        Toast.makeText(this, "User Registered Successfully.", Toast.LENGTH_SHORT).show();
     }
 
 
-    private void goToMain(){
+    private void goToMain() {
         this.finish();
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, MainActivity.class);
+//        startActivity(intent);
     }
 
     private Boolean validateData(){

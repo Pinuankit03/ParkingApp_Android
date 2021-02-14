@@ -45,4 +45,10 @@ dependencies {
     //added for Firebase version config by BoM
     implementation platform('com.google.firebase:firebase-bom:26.4.0')
     implementation 'com.google.firebase:firebase-firestore:22.0.2'
+
+    //to access the location of the device
+    implementation 'com.google.android.gms:play-services-location:17.1.0'
+
+    //to display location on maps
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
 }

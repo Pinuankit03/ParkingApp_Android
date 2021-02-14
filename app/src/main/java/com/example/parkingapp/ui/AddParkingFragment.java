@@ -1,9 +1,7 @@
 package com.example.parkingapp.ui;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,22 +13,34 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+
 import com.example.parkingapp.R;
+import com.example.parkingapp.common.LocationManager;
 import com.example.parkingapp.model.Parking;
 import com.example.parkingapp.viewmodels.ParkingViewModel;
 import com.example.parkingapp.viewmodels.UserViewModel;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.Date;
 
 public class AddParkingFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
+    private final String TAG = this.getClass().getCanonicalName();
     private EditText edCarPlateNo, edBuildingCode, edHostNo, edParkingAdd;
     private Button btnAddParking, btnCurrentLoc;
     private ParkingViewModel parkingViewModel;
     private UserViewModel userViewModel;
     private String userID;
     private Spinner spinnerHour;
-    private  String selectedHours;
+    private String selectedHours;
+    public LocationManager locationManager;
+    private LocationCallback locationCallback;
+    private LatLng currentLocation;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -39,7 +49,7 @@ public class AddParkingFragment extends Fragment implements View.OnClickListener
         this.parkingViewModel = ParkingViewModel.getInstance();
         this.userViewModel = UserViewModel.getInstance();
         this.userID = this.userViewModel.getUserRepository().loggedInUserID.getValue();
-        Log.d("userID",userID);
+        Log.d("userID", userID);
 
         edCarPlateNo = root.findViewById(R.id.edCarPlateNo);
         edBuildingCode = root.findViewById(R.id.edBuildingCode);
@@ -53,6 +63,10 @@ public class AddParkingFragment extends Fragment implements View.OnClickListener
         btnAddParking.setOnClickListener(this);
 
         spinnerHour.setOnItemSelectedListener(this);
+
+        this.locationManager = LocationManager.getInstance();
+        this.locationManager.checkPermissions(getActivity());
+
         return root;
 
     }
@@ -64,6 +78,27 @@ public class AddParkingFragment extends Fragment implements View.OnClickListener
                 case R.id.btnAddParking: {
                     if (validateData()) {
                         addParking();
+                        Navigation.findNavController(getView()).popBackStack();
+                    }
+                }
+                case R.id.btnCurrentLoc: {
+                    Log.e("Location", "Click");
+                    if (this.locationManager.locationPermissionGranted) {
+//            this.getLocation();
+                        locationCallback = new LocationCallback() {
+                            @Override
+                            public void onLocationResult(LocationResult locationResult) {
+                                if (locationResult == null) {
+                                    return;
+                                }
+                                for (Location loc : locationResult.getLocations()) {
+                                    //  Log.e(TAG, "Lat : " + loc.getLatitude() + "\nLng : " + loc.getLongitude());
+                                    currentLocation = new LatLng(loc.getLatitude(), loc.getLongitude());
+                                }
+                            }
+                        };
+
+                        this.locationManager.requestLocationUpdates(getActivity(), this.locationCallback);
                     }
                 }
                 default:
@@ -73,15 +108,18 @@ public class AddParkingFragment extends Fragment implements View.OnClickListener
     }
 
     private void addParking() {
-
+        currentLocation = locationManager.getLocationFromAddress(getActivity(), this.edParkingAdd.getText().toString());
+        Log.e(TAG, "Lat : " + currentLocation.latitude + "\nLng : " + currentLocation.longitude);
         Parking newParking = new Parking(edBuildingCode.getText().toString(),
                 edCarPlateNo.getText().toString(),
                 selectedHours,
-                0.0, 0.0, edHostNo.getText().toString(),
+                currentLocation.latitude, currentLocation.longitude, edHostNo.getText().toString(),
                 new Date(), edParkingAdd.getText().toString());
 
         //save todo to db
         parkingViewModel.addParkingItem(userID, newParking);
+        Toast.makeText(getActivity(), "Parking booked Successfully.", Toast.LENGTH_LONG).show();
+
     }
 
     private Boolean validateData() {
@@ -108,11 +146,28 @@ public class AddParkingFragment extends Fragment implements View.OnClickListener
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                selectedHours = (String) adapterView.getItemAtPosition(position);
+        selectedHours = (String) adapterView.getItemAtPosition(position);
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == this.locationManager.LOCATION_PERMISSION_REQUEST_CODE) {
+            this.locationManager.locationPermissionGranted = (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED);
+
+            if (this.locationManager.locationPermissionGranted) {
+                //start receiving location and display that on screen
+                Log.e(TAG, "LocationPermissionGranted " + this.locationManager.locationPermissionGranted);
+            }
+            return;
+        }
+    }
+
+
 }
