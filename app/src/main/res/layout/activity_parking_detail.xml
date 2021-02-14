@@ -14,9 +14,10 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="15dp"
         android:gravity="center"
-        android:text="Car Plate No : 12345"
-        android:textColor="@color/black"
-        android:textSize="18dp"
+        android:text=""
+        android:textColor="@color/teal_200"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,10 +42,10 @@
         android:id="@+id/tvAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="address hdfhsgfhsgdfhsgdfhs"
+        android:text=""
         android:textColor="@color/black"
         android:layout_marginLeft="10dp"
-        android:textSize="16dp" />
+        android:textSize="16sp" />
 </LinearLayout>
 
     <LinearLayout
@@ -61,16 +62,16 @@
             android:id="@+id/txtBlockNo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Building Code "
-            android:textSize="18dp"/>
+            android:text="Building Code : "
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvBuildingCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="8111"
+            android:text=""
             android:textColor="@color/black"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:layout_marginLeft="10dp"/>
     </LinearLayout>
 
@@ -87,16 +88,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Parking Date "
-            android:textSize="18dp"/>
+            android:text="Parking Date : "
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvParkingDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2021-01-09"
+            android:text=""
             android:textColor="@color/black"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:layout_marginLeft="10dp"/>
     </LinearLayout>
 
@@ -113,16 +114,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Suit No of Host "
-            android:textSize="18dp"/>
+            android:text="Suit No of Host : "
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvSuiteHost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="10"
+            android:text=""
             android:textColor="@color/black"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:layout_marginLeft="10dp"/>
     </LinearLayout>
 
@@ -130,9 +131,9 @@
         android:id="@+id/tvHours"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Hours"
+        android:text=""
         android:textColor="@android:color/holo_red_dark"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:layout_marginLeft="10dp"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="20dp"
@@ -147,6 +148,7 @@
         android:layout_height="wrap_content"
         android:text="View your Parking Location"
         android:layout_marginEnd="20dp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="20dp"

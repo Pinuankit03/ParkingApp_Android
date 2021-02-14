@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:text="Parking Address :"
             android:textColor="@color/colorPrimary"
-            android:layout_marginLeft="5dp"
+
             android:textSize="16dp"/>
 
         <TextView
@@ -97,13 +97,13 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:textSize="18sp"
-            android:paddingLeft="10dp"
+            android:paddingLeft="15dp"
             android:paddingBottom="3dp"
             android:paddingTop="3dp"
             android:layout_gravity="center_vertical"
             android:textColor="@color/white"
             android:layout_marginTop="5dp"
-            android:text="Car plate no"></TextView>
+            android:text=""></TextView>
     </LinearLayout>
 
 

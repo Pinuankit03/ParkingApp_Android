@@ -23,6 +23,7 @@ public class ParkingDetailActivity extends AppCompatActivity implements View.OnC
     private Button btnViewLocation;
     private String parkingID, userID;
     private ParkingViewModel parkingViewModel;
+    private Parking parkingData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +53,13 @@ public class ParkingDetailActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onChanged(Parking parking) {
                 Log.e("parking data get", "data: " + parking.toString());
+                parkingData = parking;
                 txtBuildingCode.setText(parking.getBuildingCode());
-                txtCarPlateNo.setText(parking.getCarPlateNo());
+                txtCarPlateNo.setText("Car Plate No : " + parking.getCarPlateNo());
                 txtHostno.setText(parking.getNoOfHost());
                 String strDate = dateFormat.format(parking.getParkingDate());
                 txtParkingDate.setText((strDate));
-                txtHours.setText("You can park only " + parking.getHoursToPark());
+                txtHours.setText("You can park your car till " + parking.getHoursToPark());
                 txtAddress.setText(parking.getStreetAddress());
             }
         });
@@ -65,8 +67,12 @@ public class ParkingDetailActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View view) {
-        if (view != null){
-
+        if (view != null) {
+            Intent intent = new Intent(this, MapsActivity.class);
+            intent.putExtra("latitude", parkingData.getLatitude());
+            intent.putExtra("longitude", parkingData.getLongitude());
+            intent.putExtra("streetAdd", parkingData.getStreetAddress());
+            startActivity(intent);
         }
     }
 }

@@ -66,7 +66,7 @@ public class ParkingListAdapter extends RecyclerView.Adapter<ParkingListAdapter.
             txtAddress.setText(parking.getStreetAddress());
             // txtParkingDate.setText(parking.getParkingDate());
             txtParkingHours.setText(parking.getHoursToPark());
-            txtCarPlateNo.setText(parking.getCarPlateNo());
+            txtCarPlateNo.setText("Car Plate No : " + parking.getCarPlateNo());
             txtParkingDate.setText(strDate);
             linearMain.setOnClickListener(new View.OnClickListener() {
                 @Override

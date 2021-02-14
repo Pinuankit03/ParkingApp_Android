@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 
 import com.example.parkingapp.R;
+import com.example.parkingapp.common.ValidateData;
 import com.example.parkingapp.model.User;
 import com.example.parkingapp.viewmodels.UserViewModel;
 
@@ -63,21 +64,56 @@ public class UpdateProfileFragment extends Fragment implements View.OnClickListe
         if (view != null) {
             switch (view.getId()) {
                 case R.id.btn_update_profile: {
-
-                    User updatedUser = new User();
-                    updatedUser.setFirstName(edtFirstName.getText().toString());
-                    updatedUser.setLastName(edtLastname.getText().toString());
-                    updatedUser.setEmail(this.edtEmail.getText().toString());
-                    updatedUser.setCarPlateNo(this.edtCarPlateNo.getText().toString());
-                    updatedUser.setContactNo(this.edtContactNo.getText().toString());
-                    updatedUser.setPassword(userData.getPassword());
-                    updatedUser.setActive(true);
-                    this.userViewModel.updateProfile(userID, updatedUser);
-                    Toast.makeText(getActivity(), "Updated Successfully.", Toast.LENGTH_SHORT).show();
+                    if (validateData()) {
+                        User updatedUser = new User();
+                        updatedUser.setFirstName(edtFirstName.getText().toString());
+                        updatedUser.setLastName(edtLastname.getText().toString());
+                        updatedUser.setEmail(this.edtEmail.getText().toString());
+                        updatedUser.setCarPlateNo(this.edtCarPlateNo.getText().toString());
+                        updatedUser.setContactNo(this.edtContactNo.getText().toString());
+                        updatedUser.setPassword(userData.getPassword());
+                        updatedUser.setActive(true);
+                        this.userViewModel.updateProfile(userID, updatedUser);
+                        Toast.makeText(getActivity(), "Updated Successfully.", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 default:
                     break;
             }
         }
+    }
+
+    private Boolean validateData() {
+
+        if (this.edtFirstName.getText().toString().isEmpty()) {
+            this.edtFirstName.setError("Please enter firstname");
+            return false;
+        }
+
+        if (this.edtEmail.getText().toString().isEmpty()) {
+            this.edtEmail.setError("Please enter an email");
+            return false;
+        }
+
+        if (!ValidateData.isValidEmailId(this.edtEmail.getText().toString())) {
+            this.edtEmail.setError("InValid Email Address.");
+            return false;
+        }
+
+        if (this.edtCarPlateNo.getText().toString().isEmpty()) {
+            this.edtCarPlateNo.setError("Please provide your car plate no.");
+            return false;
+        }
+
+        if (this.edtContactNo.getText().toString().isEmpty()) {
+            this.edtContactNo.setError("Please provide your contact number.");
+            return false;
+        }
+
+        if (!ValidateData.isValidPhoneNumber(edtContactNo.getText().toString())) {
+            this.edtContactNo.setError("Please provide valid contact number.");
+            return false;
+        }
+        return true;
     }
 }

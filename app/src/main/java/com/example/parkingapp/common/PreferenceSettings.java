@@ -10,6 +10,7 @@ public class PreferenceSettings {
 
     private String LOGIN = "login";
     private String userName = "username";
+    private String userEmail = "email";
     private String userID = "userID";
     private Context context;
     private SharedPreferences sp;
@@ -60,6 +61,14 @@ public class PreferenceSettings {
 
     public void setUserName(String userName) {
         sp.edit().putString(this.userName, userName).commit();
+    }
+
+    public String getUserEmail() {
+        return sp.getString(this.userEmail, "");
+    }
+
+    public void setUserEmail(String userEmail) {
+        sp.edit().putString(this.userEmail, userEmail).commit();
     }
 
     public String getUserID() {

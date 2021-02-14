@@ -45,11 +45,7 @@ public class HomeFragment extends Fragment implements OnParkingClickListener {
         this.parkingViewModel = ParkingViewModel.getInstance();
         mPreferenceSettings = new PreferenceSettings(getActivity());
 
-        this.userViewModel = UserViewModel.getInstance();
-        this.userID = this.userViewModel.getUserRepository().loggedInUserID.getValue();
-        Log.e("userID", userID);
-
-        mPreferenceSettings.setUserID(userID);
+       this.userID = mPreferenceSettings.getUserID();
         this.rvParking = root.findViewById(R.id.recycleView);
         this.parkingArrayList = new ArrayList<>();
         this.adapter = new ParkingListAdapter(getActivity().getApplicationContext(), parkingArrayList, this);
@@ -61,8 +57,7 @@ public class HomeFragment extends Fragment implements OnParkingClickListener {
         this.rvParking.setHasFixedSize(true);
         this.rvParking.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(), 0));
 
-        this.parkingViewModel.getAllParking(mPreferenceSettings.getUserID());
-
+        this.parkingViewModel.getAllParking(this.userID);
         this.parkingViewModel.getParkingRepository().parkingItems.observe(getActivity(), new Observer<List<Parking>>() {
             @Override
             public void onChanged(List<Parking> checklists) {
