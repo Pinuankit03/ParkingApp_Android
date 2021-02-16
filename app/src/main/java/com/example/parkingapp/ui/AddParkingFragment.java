@@ -1,6 +1,7 @@
 package com.example.parkingapp.ui;
 
 import android.content.pm.PackageManager;
+import android.location.Address;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import androidx.navigation.Navigation;
 
 import com.example.parkingapp.R;
 import com.example.parkingapp.common.LocationManager;
+import com.example.parkingapp.common.PreferenceSettings;
 import com.example.parkingapp.model.Parking;
 import com.example.parkingapp.viewmodels.ParkingViewModel;
 import com.example.parkingapp.viewmodels.UserViewModel;
@@ -41,6 +43,8 @@ public class AddParkingFragment extends Fragment implements View.OnClickListener
     public LocationManager locationManager;
     private LocationCallback locationCallback;
     private LatLng currentLocation;
+    private PreferenceSettings mPreferenceSettings;
+    private boolean isCurrentLoc = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -48,7 +52,10 @@ public class AddParkingFragment extends Fragment implements View.OnClickListener
         View root = inflater.inflate(R.layout.fragment_add_parking, container, false);
         this.parkingViewModel = ParkingViewModel.getInstance();
         this.userViewModel = UserViewModel.getInstance();
-        this.userID = this.userViewModel.getUserRepository().loggedInUserID.getValue();
+        mPreferenceSettings = new PreferenceSettings(getActivity());
+
+        //  this.userID = this.userViewModel.getUserRepository().loggedInUserID.getValue();
+        this.userID = mPreferenceSettings.getUserID();
         Log.d("userID", userID);
 
         edCarPlateNo = root.findViewById(R.id.edCarPlateNo);
@@ -91,15 +98,21 @@ public class AddParkingFragment extends Fragment implements View.OnClickListener
                                 if (locationResult == null) {
                                     return;
                                 }
+                                Log.e("Location size", String.valueOf(locationResult.getLocations().size()));
                                 for (Location loc : locationResult.getLocations()) {
                                     //  Log.e(TAG, "Lat : " + loc.getLatitude() + "\nLng : " + loc.getLongitude());
                                     currentLocation = new LatLng(loc.getLatitude(), loc.getLongitude());
+                                    isCurrentLoc = true;
+                                    Address address = locationManager.getAddressFromLocation(getActivity(), currentLocation);
+                                    edParkingAdd.setText(address.getAddressLine(0));
+
                                 }
                             }
                         };
 
                         this.locationManager.requestLocationUpdates(getActivity(), this.locationCallback);
                     }
+                    break;
                 }
                 default:
                     break;
@@ -108,7 +121,10 @@ public class AddParkingFragment extends Fragment implements View.OnClickListener
     }
 
     private void addParking() {
-        currentLocation = locationManager.getLocationFromAddress(getActivity(), this.edParkingAdd.getText().toString());
+        if (!isCurrentLoc) {
+            currentLocation = locationManager.getLocationFromAddress(getContext(), this.edParkingAdd.getText().toString());
+        }
+
         Log.e(TAG, "Lat : " + currentLocation.latitude + "\nLng : " + currentLocation.longitude);
         Parking newParking = new Parking(edBuildingCode.getText().toString(),
                 edCarPlateNo.getText().toString(),
@@ -129,15 +145,15 @@ public class AddParkingFragment extends Fragment implements View.OnClickListener
             return false;
         }
 
-        if (this.edCarPlateNo.getText().toString().isEmpty() || edCarPlateNo.getText().toString().length() <2 || edCarPlateNo.getText().toString().length() >8) {
+        if (this.edCarPlateNo.getText().toString().isEmpty() || edCarPlateNo.getText().toString().length() < 2 || edCarPlateNo.getText().toString().length() > 8) {
             this.edBuildingCode.setError("Please enter minimum 2 OR maximum 8 character of car plate no.");
             return false;
         }
-        if (this.edHostNo.getText().toString().isEmpty() || edHostNo.getText().toString().length() <2 || edHostNo.getText().toString().length() >5) {
+        if (this.edHostNo.getText().toString().isEmpty() || edHostNo.getText().toString().length() < 2 || edHostNo.getText().toString().length() > 5) {
             this.edHostNo.setError("Please enter minimum 2 OR maximum 5 character of car plate no.");
             return false;
         }
-        if (this.edParkingAdd.getText().toString().isEmpty()){
+        if (this.edParkingAdd.getText().toString().isEmpty()) {
             this.edParkingAdd.setError("Please enter Parking address.");
             return false;
         }

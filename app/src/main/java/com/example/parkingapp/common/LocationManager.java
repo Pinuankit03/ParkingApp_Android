@@ -26,6 +26,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 
 public class LocationManager {
@@ -50,7 +51,7 @@ public class LocationManager {
     private void createLocationRequest() {
         this.locationRequest = new LocationRequest();
         this.locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        this.locationRequest.setInterval(5000); //5 seconds
+        // this.locationRequest.setInterval(5000); //5 seconds
     }
 
     public void checkPermissions(Context context) {
@@ -154,10 +155,25 @@ public class LocationManager {
             p1 = new LatLng(location.getLatitude(), location.getLongitude());
 
         } catch (IOException ex) {
-
             ex.printStackTrace();
         }
 
         return p1;
+    }
+
+    public Address getAddressFromLocation(Context context, LatLng latLng) {
+        Geocoder geocoder;
+        List<Address> addresses;
+        geocoder = new Geocoder(context, Locale.getDefault());
+
+        try {
+            addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
+            // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+            return addresses.get(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
 }

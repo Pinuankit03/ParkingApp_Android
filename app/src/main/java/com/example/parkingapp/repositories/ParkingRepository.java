@@ -43,13 +43,13 @@ public class ParkingRepository {
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
-                            Log.d(TAG, "Checklist item added with ID : " + documentReference.getId());
+                            Log.d(TAG, "Parking item added with ID : " + documentReference.getId());
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.e(TAG, "Error adding checklist document");
+                            Log.e(TAG, "Error adding parking document");
                         }
                     });
 

@@ -40,4 +40,8 @@ public class UserViewModel extends ViewModel {
     public void updateProfile(String userID, User user) {
         this.userRepository.updateProfile(userID, user);
     }
+
+    public void updateProfileStatus(String userID, boolean isActive) {
+        this.userRepository.updateProfileStatus(userID, isActive);
+    }
 }

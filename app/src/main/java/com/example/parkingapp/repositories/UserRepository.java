@@ -143,4 +143,22 @@ public class UserRepository {
                     }
                 });
     }
+
+    public void updateProfileStatus(String userID, Boolean isActive) {
+        db.collection(COLLECTION_NAME_USER)
+                .document(userID)
+                .update("active", isActive)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.e(TAG, "User Profile Deleted successfully");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG, "Failure while deleting profile.");
+                    }
+                });
+    }
 }

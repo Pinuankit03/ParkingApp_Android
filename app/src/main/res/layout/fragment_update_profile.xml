@@ -208,11 +208,29 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btn_delete_acc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="76dp"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:fontFamily="serif"
+        android:padding="8dp"
+        android:text="Delete Profile"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/btn_update_profile"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="15dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="20dp"
         android:backgroundTint="@color/colorPrimary"
@@ -222,7 +240,7 @@
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_delete_acc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
