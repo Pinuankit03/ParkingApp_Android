@@ -151,7 +151,7 @@ public class AddParkingFragment extends Fragment implements View.OnClickListener
             return false;
         }
         if (this.edHostNo.getText().toString().isEmpty() || edHostNo.getText().toString().length() < 2 || edHostNo.getText().toString().length() > 5) {
-            this.edHostNo.setError("Please enter minimum 2 OR maximum 5 character of car plate no.");
+            this.edHostNo.setError("Please enter minimum 2 OR maximum 5 character of no of Host.");
             return false;
         }
         if (this.edParkingAdd.getText().toString().isEmpty()) {
