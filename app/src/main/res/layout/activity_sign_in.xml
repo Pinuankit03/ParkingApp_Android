@@ -5,7 +5,6 @@
     android:background="@color/screenBg"
     android:orientation="vertical">
 
-
     <LinearLayout
         android:layout_centerInParent="true"
         android:gravity="center"

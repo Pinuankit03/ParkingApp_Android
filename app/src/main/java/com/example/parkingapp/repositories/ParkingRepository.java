@@ -21,6 +21,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
+//Student ID - 101334143
+//Student Name - Pinalben Patel
+
 public class ParkingRepository {
     private final String TAG = this.getClass().getCanonicalName();
     private FirebaseFirestore db;
@@ -69,12 +72,12 @@ public class ParkingRepository {
                         @Override
                         public void onEvent(@Nullable QuerySnapshot snapshot, @Nullable FirebaseFirestoreException error) {
                             if (error != null) {
-                                Log.e(TAG, "Listening to checklist changes FAILED", error);
+                                Log.e(TAG, "Listening to any changes FAILED", error);
                                 return;
                             }
-                            List<Parking> tempChecklistItems = new ArrayList<>();
+                            List<Parking> tempItems = new ArrayList<>();
                             if (snapshot != null) {
-                                Log.d(TAG, "Current data : " + snapshot.getDocumentChanges());
+                                //Log.d(TAG, "Current data : " + snapshot.getDocumentChanges());
 
                                 for (DocumentChange documentChange : snapshot.getDocumentChanges()) {
 
@@ -83,7 +86,7 @@ public class ParkingRepository {
 
                                     switch (documentChange.getType()) {
                                         case ADDED:
-                                            tempChecklistItems.add(parkinglist);
+                                            tempItems.add(parkinglist);
                                             break;
                                         case MODIFIED:
                                             break;
@@ -91,12 +94,11 @@ public class ParkingRepository {
                                             break;
                                     }
                                 }
-
-                                Log.e(TAG, tempChecklistItems.toString());
-                                parkingItems.postValue(tempChecklistItems);
+                                // Log.e(TAG, tempItems.toString());
+                                parkingItems.postValue(tempItems);
 
                             } else {
-                                Log.e(TAG, "No changes in checklist");
+                                Log.e(TAG, "No changes in data");
                             }
                         }
                     });
@@ -120,7 +122,6 @@ public class ParkingRepository {
                             if (documentSnapshot != null) {
                                 eachParking.postValue(documentSnapshot.toObject(Parking.class));
                             }
-                            // Log.d(TAG, parking.getStreetAddress());
                         }
                     });
         } catch (Exception ex) {

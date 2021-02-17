@@ -25,30 +25,29 @@
             android:layout_height="wrap_content"
             android:background="@drawable/ic_location"
             android:backgroundTint="@color/black"
-            android:padding="5dp"></ImageView>
+            android:padding="5dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Parking Address :"
             android:textColor="@color/colorPrimary"
-
-            android:textSize="16dp"/>
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tvParkingAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Parking add "
+            android:text=""
             android:layout_marginLeft="5dp"
-            android:textSize="16dp"/>
+            android:textSize="16sp" />
 
     </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:orientation="horizontal">
 
             <TextView
@@ -62,9 +61,9 @@
                 android:id="@+id/tvParkingDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2021-03-01 10:11:11 "
-                android:layout_marginLeft="10dp"
-                android:textSize="16dp"/>
+                android:layout_marginStart="10dp"
+                android:text=""
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -80,15 +79,15 @@
                 android:layout_height="wrap_content"
                 android:text="Parking Hours :"
                 android:textColor="@color/colorPrimary"
-                android:textSize="16dp"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvParkingHours"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="5 Hours "
-                android:layout_marginLeft="10dp"
-                android:textSize="16dp"/>
+                android:layout_marginStart="10dp"
+                android:text=""
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -104,7 +103,7 @@
             android:layout_gravity="center_vertical"
             android:textColor="@color/white"
             android:layout_marginTop="5dp"
-            android:text=""></TextView>
+            android:text="" />
     </LinearLayout>
 
 

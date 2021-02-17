@@ -28,6 +28,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+//Student ID - 101334143
+//Student Name - Pinalben Patel
 
 public class LocationManager {
     private static final LocationManager ourInstance = new LocationManager();
@@ -145,7 +147,6 @@ public class LocationManager {
         LatLng p1 = null;
 
         try {
-            // May throw an IOException
             address = coder.getFromLocationName(strAddress, 5);
             if (address == null) {
                 return null;
@@ -168,7 +169,6 @@ public class LocationManager {
 
         try {
             addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
-            // Here 1 represent max location result to returned, by documents it recommended 1 to 5
             return addresses.get(0);
         } catch (IOException e) {
             e.printStackTrace();

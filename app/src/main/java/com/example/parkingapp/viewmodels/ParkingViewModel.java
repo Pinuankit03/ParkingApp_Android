@@ -5,12 +5,15 @@ import androidx.lifecycle.ViewModel;
 import com.example.parkingapp.model.Parking;
 import com.example.parkingapp.repositories.ParkingRepository;
 
+//Student ID - 101334143
+//Student Name - Pinalben Patel
+
 public class ParkingViewModel extends ViewModel {
-    private final String TAG = this.getClass().getCanonicalName();
+
     private static final ParkingViewModel ourInstance = new ParkingViewModel();
     private final ParkingRepository parkingRepository = new ParkingRepository();
 
-    public static ParkingViewModel getInstance(){
+    public static ParkingViewModel getInstance() {
         return ourInstance;
     }
 

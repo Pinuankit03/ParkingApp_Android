@@ -1,5 +1,8 @@
 package com.example.parkingapp.model;
 
+//Student ID - 101334143
+//Student Name - Pinalben Patel
+
 public class User {
 
     String firstName;
@@ -9,7 +12,6 @@ public class User {
     String carPlateNo;
     String contactNo;
     boolean isActive;
-
 
     public User(){
         this.email = "";

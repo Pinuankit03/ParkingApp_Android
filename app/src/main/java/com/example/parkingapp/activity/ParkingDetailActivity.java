@@ -2,7 +2,6 @@ package com.example.parkingapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,6 +17,9 @@ import com.example.parkingapp.viewmodels.ParkingViewModel;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+//Student ID - 101334143
+//Student Name - Pinalben Patel
+
 public class ParkingDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView txtBuildingCode, txtCarPlateNo, txtHostno, txtAddress, txtParkingDate, txtHours;
@@ -25,6 +27,7 @@ public class ParkingDetailActivity extends AppCompatActivity implements View.OnC
     private String parkingID, userID;
     private ParkingViewModel parkingViewModel;
     private Parking parkingData;
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +35,12 @@ public class ParkingDetailActivity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_parking_detail);
 
         this.parkingViewModel = ParkingViewModel.getInstance();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_detail);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Parking Detail");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,13 +61,13 @@ public class ParkingDetailActivity extends AppCompatActivity implements View.OnC
 
         parkingID = intent.getStringExtra("id");
         userID = intent.getStringExtra("userID");
-        Log.e("ID", "parking id in detail: " + parkingID);
-        Log.e("userID", "userID: " + userID);
+        // Log.e("ID", "parking id in detail: " + parkingID);
+        //Log.e("userID", "userID: " + userID);
         parkingViewModel.getEachParking(userID, parkingID);
         this.parkingViewModel.getParkingRepository().eachParking.observe(this, new Observer<Parking>() {
             @Override
             public void onChanged(Parking parking) {
-                Log.e("parking data get", "data: " + parking.toString());
+                // Log.e("parking data get", "data: " + parking.toString());
                 parkingData = parking;
                 txtBuildingCode.setText(parking.getBuildingCode());
                 txtCarPlateNo.setText("Car Plate No : " + parking.getCarPlateNo());

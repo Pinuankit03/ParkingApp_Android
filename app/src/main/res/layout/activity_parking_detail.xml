@@ -52,7 +52,7 @@
             android:id="@+id/tvAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginEnd="10dp"
             android:text=""
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -72,15 +72,16 @@
             android:id="@+id/txtBlockNo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Building Code : "
+            android:text="@string/building_code"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvBuildingCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="5dp"
             android:text=""
+            android:layout_marginEnd="10dp"
             android:textColor="@color/black"
             android:textSize="18sp" />
     </LinearLayout>
@@ -98,15 +99,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Parking Date : "
+            android:text="@string/parking_date"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvParkingDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="5dp"
             android:text=""
+            android:layout_marginEnd="10dp"
             android:textColor="@color/black"
             android:textSize="18sp" />
     </LinearLayout>
@@ -124,14 +126,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Suit No of Host : "
+            android:text="@string/suit_no_of_host"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvSuiteHost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:text=""
             android:textColor="@color/black"
             android:textSize="18sp" />
@@ -159,10 +161,12 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="20dp"
-        android:text="View your Parking Location"
+        android:backgroundTint="@color/colorPrimary"
         android:textSize="18sp"
+        android:padding="2dp"
+        android:text="@string/view_your_parking_location"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvHours"></Button>
+        app:layout_constraintTop_toBottomOf="@+id/tvHours" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

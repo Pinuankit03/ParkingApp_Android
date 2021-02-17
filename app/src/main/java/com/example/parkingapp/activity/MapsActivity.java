@@ -3,7 +3,6 @@ package com.example.parkingapp.activity;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -18,6 +17,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+//Student ID - 101334143
+//Student Name - Pinalben Patel
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -34,15 +36,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
 
         Intent intent = getIntent();
-        latitude = intent.getDoubleExtra("latitude", 0.0);
-        longitude = intent.getDoubleExtra("longitude", 0.0);
-        streetAdd = intent.getStringExtra("streetAdd");
+        this.latitude = intent.getDoubleExtra("latitude", 0.0);
+        this.longitude = intent.getDoubleExtra("longitude", 0.0);
+        this.streetAdd = intent.getStringExtra("streetAdd");
 
         mapFragment.getMapAsync(this);
 
@@ -56,15 +56,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if (locationResult == null) {
                         return;
                     }
-
                     for (Location loc : locationResult.getLocations()) {
 
                         currentLocation = new LatLng(latitude, longitude);
-//                        mMap.animateCamera(CameraUpdateFactory.newLatLng(currentLocation));
                         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, DEFAULT_ZOOM));
 
-                        Log.e(TAG, "Lat : " + loc.getLatitude() + "\nLng : " + loc.getLongitude());
-                        Log.e(TAG, "Number of locations" + locationResult.getLocations().size());
+                        // Log.e(TAG, "Lat : " + loc.getLatitude() + "\nLng : " + loc.getLongitude());
+                        //Log.e(TAG, "Number of locations" + locationResult.getLocations().size());
                     }
                 }
             };
@@ -101,7 +99,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         gMap.setTrafficEnabled(false);
 
         UiSettings myUiSettings = gMap.getUiSettings();
-
         myUiSettings.setZoomControlsEnabled(true);
         myUiSettings.setZoomGesturesEnabled(true);
         myUiSettings.setMyLocationButtonEnabled(true);

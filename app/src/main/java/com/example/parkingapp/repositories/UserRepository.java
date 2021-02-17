@@ -15,17 +15,18 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+//Student ID - 101334143
+//Student Name - Pinalben Patel
 
 public class UserRepository {
     private final String TAG = this.getClass().getCanonicalName();
     private final String COLLECTION_NAME_USER = "User";
     private final FirebaseFirestore db;
-
     public MutableLiveData<String> signInStatus = new MutableLiveData<String>();
     public MutableLiveData<String> loggedInUserID = new MutableLiveData<String>();
     public MutableLiveData<User> userData = new MutableLiveData<>();
 
-    public UserRepository(){
+    public UserRepository() {
         db = FirebaseFirestore.getInstance();
     }
 
@@ -64,17 +65,6 @@ public class UserRepository {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()){
-//                                for (QueryDocumentSnapshot document : task.getResult()){
-//                                    Log.d(TAG, document.getId() + "---" + document.getData());
-//                                    if (document.toObject(User.class).getPassword().equals(password)){
-//                                        Log.d(TAG, "Successful Login");
-//                                        signInStatus.postValue("SUCCESS");
-//                                    }else{
-//                                        Log.d(TAG, "Unsuccessful Login");
-//                                        signInStatus.postValue("FAILURE");
-//                                    }
-//                                }
-
                                 if (task.getResult().getDocuments().size() != 0){
                                     if (task.getResult().getDocuments().get(0).toObject(User.class).getPassword().equals(password) &&
                                         task.getResult().getDocuments().get(0).toObject(User.class).isActive() == true){
@@ -107,9 +97,7 @@ public class UserRepository {
         try {
             db.collection(COLLECTION_NAME_USER)
                     .document(userID)
-//                    .whereEqualTo("password", password)
                     .get()
-
                     .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -127,38 +115,48 @@ public class UserRepository {
     }
 
     public void updateProfile(String userID, User user) {
-        db.collection(COLLECTION_NAME_USER)
-                .document(userID)
-                .set(user)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.e(TAG, "Document updated successfully");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.e(TAG, "Failure updating document");
-                    }
-                });
+        try {
+            db.collection(COLLECTION_NAME_USER)
+                    .document(userID)
+                    .set(user)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.e(TAG, "Document updated successfully");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.e(TAG, "Failure updating document");
+                        }
+                    });
+        } catch (Exception ex) {
+            Log.e(TAG, ex.toString());
+            Log.e(TAG, ex.getLocalizedMessage());
+        }
     }
 
     public void updateProfileStatus(String userID, Boolean isActive) {
-        db.collection(COLLECTION_NAME_USER)
-                .document(userID)
-                .update("active", isActive)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.e(TAG, "User Profile Deleted successfully");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.e(TAG, "Failure while deleting profile.");
-                    }
-                });
+        try {
+            db.collection(COLLECTION_NAME_USER)
+                    .document(userID)
+                    .update("active", isActive)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.e(TAG, "User Profile Deleted successfully");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.e(TAG, "Failure while deleting profile.");
+                        }
+                    });
+        } catch (Exception ex) {
+            Log.e(TAG, ex.toString());
+            Log.e(TAG, ex.getLocalizedMessage());
+        }
     }
 }

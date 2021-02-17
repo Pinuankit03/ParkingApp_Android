@@ -19,10 +19,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+//Student ID - 101334143
+//Student Name - Pinalben Patel
 
 public class ParkingListAdapter extends RecyclerView.Adapter<ParkingListAdapter.ParkinglistViewHolder> {
-    private Context context;
-    private ArrayList<Parking> parkingsList;
+    private final Context context;
+    private final ArrayList<Parking> parkingsList;
     static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     private OnParkingClickListener clickListener;
 
@@ -50,7 +52,7 @@ public class ParkingListAdapter extends RecyclerView.Adapter<ParkingListAdapter.
     }
 
     public static class ParkinglistViewHolder extends RecyclerView.ViewHolder {
-        TextView txtAddress, txtParkingDate,txtParkingHours, txtCarPlateNo;
+        TextView txtAddress, txtParkingDate, txtParkingHours, txtCarPlateNo;
         LinearLayout linearMain;
 
         public ParkinglistViewHolder(@NonNull View itemView) {
@@ -68,7 +70,6 @@ public class ParkingListAdapter extends RecyclerView.Adapter<ParkingListAdapter.
             Date d = parking.getParkingDate();
             String strDate = dateFormat.format(d);
             txtAddress.setText(parking.getStreetAddress());
-            // txtParkingDate.setText(parking.getParkingDate());
             txtParkingHours.setText(parking.getHoursToPark());
             txtCarPlateNo.setText("Car Plate No : " + parking.getCarPlateNo());
             txtParkingDate.setText(strDate);

@@ -6,15 +6,18 @@ import android.content.SharedPreferences;
 
 import com.example.parkingapp.activity.SignInActivity;
 
+//Student ID - 101334143
+//Student Name - Pinalben Patel
+
 public class PreferenceSettings {
 
-    private String LOGIN = "login";
-    private String userName = "username";
-    private String userEmail = "email";
-    private String userID = "userID";
-    private Context context;
-    private SharedPreferences sp;
-    private SharedPreferences.Editor editor;
+    private final String LOGIN = "login";
+    private final String userName = "username";
+    private final String userEmail = "email";
+    private final String userID = "userID";
+    private final Context context;
+    private final SharedPreferences sp;
+    private final SharedPreferences.Editor editor;
     private final String TAG = this.getClass().getCanonicalName();
 
     public PreferenceSettings(Context context) {
@@ -33,22 +36,15 @@ public class PreferenceSettings {
 
 
     public void logoutUser() {
-        // Clearing all data from Shared Preferences
         try {
-//            // Yes button clicked, do something
-
-
-//            editor.clear();
-//            editor.commit();
-            context.getSharedPreferences(TAG, Context.MODE_PRIVATE).edit().remove(LOGIN).commit();
-            context.getSharedPreferences(TAG, Context.MODE_PRIVATE).edit().remove(userEmail).commit();
-            context.getSharedPreferences(TAG, Context.MODE_PRIVATE).edit().remove(userID).commit();
-            context.getSharedPreferences(TAG, Context.MODE_PRIVATE).edit().remove(userName).commit();
+            context.getSharedPreferences(TAG, Context.MODE_PRIVATE).edit().remove(LOGIN).apply();
+            context.getSharedPreferences(TAG, Context.MODE_PRIVATE).edit().remove(userEmail).apply();
+            context.getSharedPreferences(TAG, Context.MODE_PRIVATE).edit().remove(userID).apply();
+            context.getSharedPreferences(TAG, Context.MODE_PRIVATE).edit().remove(userName).apply();
 
             Intent i = new Intent(context, SignInActivity.class);
             // Closing all the Activities
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
             // Add new Flag to start new Activity
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
@@ -65,7 +61,7 @@ public class PreferenceSettings {
     }
 
     public void setUserName(String userName) {
-        sp.edit().putString(this.userName, userName).commit();
+        sp.edit().putString(this.userName, userName).apply();
     }
 
     public String getUserEmail() {
@@ -73,7 +69,7 @@ public class PreferenceSettings {
     }
 
     public void setUserEmail(String userEmail) {
-        sp.edit().putString(this.userEmail, userEmail).commit();
+        sp.edit().putString(this.userEmail, userEmail).apply();
     }
 
     public String getUserID() {
@@ -82,7 +78,7 @@ public class PreferenceSettings {
     }
 
     public void setUserID(String id) {
-        sp.edit().putString(userID, id).commit();
+        sp.edit().putString(userID, id).apply();
 
     }
 

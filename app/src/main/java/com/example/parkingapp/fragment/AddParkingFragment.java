@@ -1,4 +1,4 @@
-package com.example.parkingapp.ui;
+package com.example.parkingapp.fragment;
 
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -29,6 +29,10 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.Date;
+import java.util.Locale;
+
+//Student ID - 101334143
+//Student Name - Pinalben Patel
 
 public class AddParkingFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
@@ -45,6 +49,7 @@ public class AddParkingFragment extends Fragment implements View.OnClickListener
     private LatLng currentLocation;
     private PreferenceSettings mPreferenceSettings;
     private boolean isCurrentLoc = false;
+    Address address = new Address(Locale.getDefault());
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -56,7 +61,7 @@ public class AddParkingFragment extends Fragment implements View.OnClickListener
 
         //  this.userID = this.userViewModel.getUserRepository().loggedInUserID.getValue();
         this.userID = mPreferenceSettings.getUserID();
-        Log.d("userID", userID);
+        // Log.d("userID", userID);
 
         edCarPlateNo = root.findViewById(R.id.edCarPlateNo);
         edBuildingCode = root.findViewById(R.id.edBuildingCode);
@@ -68,14 +73,12 @@ public class AddParkingFragment extends Fragment implements View.OnClickListener
 
         btnCurrentLoc.setOnClickListener(this);
         btnAddParking.setOnClickListener(this);
-
         spinnerHour.setOnItemSelectedListener(this);
 
         this.locationManager = LocationManager.getInstance();
         this.locationManager.checkPermissions(getActivity());
 
         return root;
-
     }
 
     @Override
@@ -87,23 +90,21 @@ public class AddParkingFragment extends Fragment implements View.OnClickListener
                         addParking();
                         Navigation.findNavController(getView()).popBackStack();
                     }
+                    break;
                 }
                 case R.id.btnCurrentLoc: {
-                    Log.e("Location", "Click");
                     if (this.locationManager.locationPermissionGranted) {
-//            this.getLocation();
                         locationCallback = new LocationCallback() {
                             @Override
                             public void onLocationResult(LocationResult locationResult) {
                                 if (locationResult == null) {
                                     return;
                                 }
-                                Log.e("Location size", String.valueOf(locationResult.getLocations().size()));
                                 for (Location loc : locationResult.getLocations()) {
                                     //  Log.e(TAG, "Lat : " + loc.getLatitude() + "\nLng : " + loc.getLongitude());
                                     currentLocation = new LatLng(loc.getLatitude(), loc.getLongitude());
                                     isCurrentLoc = true;
-                                    Address address = locationManager.getAddressFromLocation(getActivity(), currentLocation);
+                                    address = locationManager.getAddressFromLocation(getActivity(), currentLocation);
                                     edParkingAdd.setText(address.getAddressLine(0));
 
                                 }
@@ -122,10 +123,11 @@ public class AddParkingFragment extends Fragment implements View.OnClickListener
 
     private void addParking() {
         if (!isCurrentLoc) {
-            currentLocation = locationManager.getLocationFromAddress(getContext(), this.edParkingAdd.getText().toString());
+            if (this.locationManager.locationPermissionGranted) {
+                currentLocation = locationManager.getLocationFromAddress(getActivity(), this.edParkingAdd.getText().toString());
+            }
         }
-
-        Log.e(TAG, "Lat : " + currentLocation.latitude + "\nLng : " + currentLocation.longitude);
+        // Log.e(TAG, "Lat : " + currentLocation.latitude + "\nLng : " + currentLocation.longitude);
         Parking newParking = new Parking(edBuildingCode.getText().toString(),
                 edCarPlateNo.getText().toString(),
                 selectedHours,
@@ -139,7 +141,6 @@ public class AddParkingFragment extends Fragment implements View.OnClickListener
     }
 
     private Boolean validateData() {
-
         if (this.edBuildingCode.getText().toString().isEmpty() || edBuildingCode.getText().toString().length() != 5) {
             this.edBuildingCode.setError("Please enter exact 5 character of building code.");
             return false;

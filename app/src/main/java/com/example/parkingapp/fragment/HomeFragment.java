@@ -1,11 +1,11 @@
-package com.example.parkingapp.ui;
+package com.example.parkingapp.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -21,21 +21,23 @@ import com.example.parkingapp.common.OnParkingClickListener;
 import com.example.parkingapp.common.PreferenceSettings;
 import com.example.parkingapp.model.Parking;
 import com.example.parkingapp.viewmodels.ParkingViewModel;
-import com.example.parkingapp.viewmodels.UserViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+
+//Student ID - 101334143
+//Student Name - Pinalben Patel
 
 public class HomeFragment extends Fragment implements OnParkingClickListener {
     private final String TAG = this.getClass().getCanonicalName();
     private ParkingListAdapter adapter;
     private ArrayList<Parking> parkingArrayList;
     private ParkingViewModel parkingViewModel;
-    private UserViewModel userViewModel;
     private String userID;
     private RecyclerView rvParking;
     private LinearLayoutManager viewManager;
     private PreferenceSettings mPreferenceSettings;
+    private TextView txtNoData;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -43,29 +45,37 @@ public class HomeFragment extends Fragment implements OnParkingClickListener {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         this.parkingViewModel = ParkingViewModel.getInstance();
-        mPreferenceSettings = new PreferenceSettings(getActivity());
+        this.mPreferenceSettings = new PreferenceSettings(getActivity());
+        this.parkingArrayList = new ArrayList<>();
 
         this.userID = mPreferenceSettings.getUserID();
         this.rvParking = root.findViewById(R.id.recycleView);
-        this.parkingArrayList = new ArrayList<>();
+        this.txtNoData = root.findViewById(R.id.tvNoData);
+
         this.adapter = new ParkingListAdapter(getActivity().getApplicationContext(), parkingArrayList, this);
         this.viewManager = new LinearLayoutManager(getActivity().getApplicationContext());
-
-
         this.rvParking.setAdapter(this.adapter);
         this.rvParking.setLayoutManager(this.viewManager);
         this.rvParking.setHasFixedSize(true);
         this.rvParking.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(), 0));
 
+
         this.parkingViewModel.getAllParking(this.userID);
         this.parkingViewModel.getParkingRepository().parkingItems.observe(getActivity(), new Observer<List<Parking>>() {
             @Override
-            public void onChanged(List<Parking> checklists) {
-                if (checklists != null) {
-                    Log.e(TAG, "Data Changed : " + checklists.toString());
+            public void onChanged(List<Parking> parkingsList) {
+                if (parkingsList != null) {
+                    // Log.e(TAG, "Data Changed : " + parkingsList.toString());
                     parkingArrayList.clear();
-                    parkingArrayList.addAll(checklists);
-                    adapter.notifyDataSetChanged();
+                    parkingArrayList.addAll(parkingsList);
+                    if (parkingArrayList.size() > 0 && parkingArrayList != null) {
+                        txtNoData.setVisibility(View.GONE);
+                        rvParking.setVisibility(View.VISIBLE);
+                        adapter.notifyDataSetChanged();
+                    } else {
+                        txtNoData.setVisibility(View.VISIBLE);
+                        rvParking.setVisibility(View.GONE);
+                    }
                 }
             }
         });
@@ -75,8 +85,8 @@ public class HomeFragment extends Fragment implements OnParkingClickListener {
 
     @Override
     public void onParkingClickListener(Parking parking) {
-        Log.e("Details", "parking detail : " + parking.toString());
-        Log.e("ID", "parking id : " + parking.getId());
+//        Log.e("Details", "parking detail : " + parking.toString());
+//        Log.e("ID", "parking id : " + parking.getId());
         Intent intent = new Intent(getActivity(), ParkingDetailActivity.class);
         intent.putExtra("id", parking.getId());
         intent.putExtra("userID", this.userID);

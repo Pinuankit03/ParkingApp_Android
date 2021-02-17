@@ -2,7 +2,6 @@ package com.example.parkingapp.activity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +24,9 @@ import com.example.parkingapp.model.User;
 import com.example.parkingapp.viewmodels.UserViewModel;
 import com.google.android.material.navigation.NavigationView;
 
+//Student ID - 101334143
+//Student Name - Pinalben Patel
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mPreferenceSettings = new PreferenceSettings(this);
+        this.mPreferenceSettings = new PreferenceSettings(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (mPreferenceSettings.getUserID() == null || mPreferenceSettings.getUserID() == "") {
             this.userID = this.userViewModel.getUserRepository().loggedInUserID.getValue();
-            Log.e("userID", userID);
+            // Log.e("userID", userID);
             mPreferenceSettings.setUserID(userID);
         } else {
             userID = mPreferenceSettings.getUserID();
@@ -80,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }

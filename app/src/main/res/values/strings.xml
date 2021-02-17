@@ -13,7 +13,7 @@
 
     <string name="email">Email</string>
     <string name="passowrd">Passowrd</string>
-    <string name="save_password">save password</string>
+    <string name="save_password">Save Password</string>
     <string name="login_btn">LOGIN</string>
     <string name="sign_up">Sign Up</string>
 
@@ -26,5 +26,19 @@
         <item>24-hour</item>
     </string-array>
     <string name="title_activity_maps">Map</string>
+    <string name="enter_car_plate_no">Enter Car Plate No</string>
+    <string name="enter_building_code">Enter Building Code</string>
+    <string name="how_many_hours_do_you_want_to_park">How many hours do you want to park?</string>
+    <string name="enter_no_of_host">Enter No of Host</string>
+    <string name="parking_address">Parking Address</string>
+    <string name="enter_parking_address">Enter Parking Address</string>
+    <string name="or">OR</string>
+    <string name="building_code">Building Code : </string>
+    <string name="parking_date">Parking Date : </string>
+    <string name="suit_no_of_host">Suit No of Host : </string>
+    <string name="view_your_parking_location">View your Parking Location</string>
+    <!--    <string name="you_don_t_have_any_parking_booked_yet">You don&apos;t have any parking booked yet.</string>-->
+    <string name="add_parking">Add Parking</string>
+    <string name="use_current_location">Use Current Location</string>
 
 </resources>

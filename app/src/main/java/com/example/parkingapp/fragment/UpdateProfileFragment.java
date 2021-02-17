@@ -1,8 +1,7 @@
-package com.example.parkingapp.ui;
+package com.example.parkingapp.fragment;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +21,8 @@ import com.example.parkingapp.common.ValidateData;
 import com.example.parkingapp.model.User;
 import com.example.parkingapp.viewmodels.UserViewModel;
 
+//Student ID - 101334143
+//Student Name - Pinalben Patel
 public class UpdateProfileFragment extends Fragment implements View.OnClickListener {
 
 
@@ -57,7 +58,7 @@ public class UpdateProfileFragment extends Fragment implements View.OnClickListe
             @Override
             public void onChanged(User user) {
                 userData = user;
-                Log.e("User login ", user.getFirstName());
+//                Log.e("User login ", user.getFirstName());
                 edtFirstName.setText(user.getFirstName());
                 edtLastname.setText(user.getLastName());
                 edtContactNo.setText(user.getContactNo());
@@ -89,11 +90,12 @@ public class UpdateProfileFragment extends Fragment implements View.OnClickListe
                         Toast.makeText(getActivity(), "Updated Successfully.", Toast.LENGTH_SHORT).show();
                         Navigation.findNavController(getView()).popBackStack();
                     }
+                    break;
                 }
 
                 case R.id.btn_delete_acc: {
                     new AlertDialog.Builder(getActivity()).setIcon(android.R.drawable.ic_delete)
-                            .setTitle("Delete Profile").setMessage("Are you sure you want to delete your account    ?")
+                            .setTitle("Delete Profile").setMessage("Are you sure you want to delete your account?")
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
