@@ -11,6 +11,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -20,6 +21,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
+//Student ID - 101334143
+//Student Name - Pinalben Patel
+
 public class ParkingRepository {
     private final String TAG = this.getClass().getCanonicalName();
     private FirebaseFirestore db;
@@ -27,13 +31,14 @@ public class ParkingRepository {
     private final String COLLECTION_NAME_USER = "User";
 
     public MutableLiveData<List<Parking>> parkingItems = new MutableLiveData<List<Parking>>();
+    public MutableLiveData<Parking> eachParking = new MutableLiveData<Parking>();
 
-    public ParkingRepository(){
+    public ParkingRepository() {
         this.db = FirebaseFirestore.getInstance();
     }
 
-    public void addParkingItem(String userID, Parking parking){
-        try{
+    public void addParkingItem(String userID, Parking parking) {
+        try {
             db.collection(COLLECTION_NAME_USER)
                     .document(userID)
                     .collection(COLLECTION_NAME_PARKING)
@@ -41,49 +46,47 @@ public class ParkingRepository {
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
-                            Log.d(TAG, "Checklist item added with ID : "+ documentReference.getId());
+                            Log.d(TAG, "Parking item added with ID : " + documentReference.getId());
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.e(TAG, "Error adding checklist document");
+                            Log.e(TAG, "Error adding parking document");
                         }
                     });
 
-        }catch (Exception ex){
+        } catch (Exception ex) {
             Log.e(TAG, ex.toString());
             Log.e(TAG, ex.getLocalizedMessage());
         }
     }
 
-    public void getAllParking(String userID){
-        try{
+    public void getAllParking(String userID) {
+        try {
             db.collection(COLLECTION_NAME_USER)
                     .document(userID)
                     .collection(COLLECTION_NAME_PARKING)
-                   // .orderBy("dateCreated", Query.Direction.DESCENDING)
+                    .orderBy("parkingDate", Query.Direction.DESCENDING)
                     .addSnapshotListener(new EventListener<QuerySnapshot>() {
                         @Override
                         public void onEvent(@Nullable QuerySnapshot snapshot, @Nullable FirebaseFirestoreException error) {
-                            if (error != null){
-                                Log.e(TAG, "Listening to checklist changes FAILED", error);
+                            if (error != null) {
+                                Log.e(TAG, "Listening to any changes FAILED", error);
                                 return;
                             }
+                            List<Parking> tempItems = new ArrayList<>();
+                            if (snapshot != null) {
+                                //Log.d(TAG, "Current data : " + snapshot.getDocumentChanges());
 
-                            List<Parking> tempChecklistItems = new ArrayList<>();
-
-                            if (snapshot != null){
-                                Log.d(TAG, "Current data : " + snapshot.getDocumentChanges());
-
-                                for (DocumentChange documentChange : snapshot.getDocumentChanges()){
+                                for (DocumentChange documentChange : snapshot.getDocumentChanges()) {
 
                                     Parking parkinglist = documentChange.getDocument().toObject(Parking.class);
                                     parkinglist.setId(documentChange.getDocument().getId());
 
-                                    switch (documentChange.getType()){
+                                    switch (documentChange.getType()) {
                                         case ADDED:
-                                            tempChecklistItems.add(parkinglist);
+                                            tempItems.add(parkinglist);
                                             break;
                                         case MODIFIED:
                                             break;
@@ -91,20 +94,39 @@ public class ParkingRepository {
                                             break;
                                     }
                                 }
+                                // Log.e(TAG, tempItems.toString());
+                                parkingItems.postValue(tempItems);
 
-                                Log.e(TAG, tempChecklistItems.toString());
-                                parkingItems.postValue(tempChecklistItems);
-
-                            }else{
-                                Log.e(TAG, "No changes in checklist");
+                            } else {
+                                Log.e(TAG, "No changes in data");
                             }
                         }
                     });
 
-        }catch(Exception ex){
+        } catch (Exception ex) {
             Log.e(TAG, ex.getLocalizedMessage());
             Log.e(TAG, ex.toString());
         }
     }
 
+    public void getEachParking(String userID, String parkingID) {
+        try {
+            db.collection(COLLECTION_NAME_USER)
+                    .document(userID)
+                    .collection(COLLECTION_NAME_PARKING)
+                    .document(parkingID)
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            if (documentSnapshot != null) {
+                                eachParking.postValue(documentSnapshot.toObject(Parking.class));
+                            }
+                        }
+                    });
+        } catch (Exception ex) {
+            Log.e(TAG, ex.getLocalizedMessage());
+            Log.e(TAG, ex.toString());
+        }
+    }
 }

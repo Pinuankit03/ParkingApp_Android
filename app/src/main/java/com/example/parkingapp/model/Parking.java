@@ -2,8 +2,10 @@ package com.example.parkingapp.model;
 
 import java.util.Date;
 
-public class Parking {
+//Student ID - 101334143
+//Student Name - Pinalben Patel
 
+public class Parking {
     String id = "";
     String buildingCode;
     String carPlateNo;

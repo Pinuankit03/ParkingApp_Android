@@ -1,20 +1,20 @@
 package com.example.parkingapp.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.parkingapp.R;
 import com.example.parkingapp.common.ValidateData;
 import com.example.parkingapp.model.User;
 import com.example.parkingapp.viewmodels.UserViewModel;
 
-import java.util.regex.Pattern;
+//Student ID - 101334143
+//Student Name - Pinalben Patel
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -22,12 +22,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private Button btnSignUp;
     private UserViewModel userViewModel;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        this.userViewModel = UserViewModel.getInstance();
         edFirstName = findViewById(R.id.ed_firstName);
         edLastName = findViewById(R.id.ed_lastName);
         edEmail = findViewById(R.id.ed_email);
@@ -39,7 +39,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         btnSignUp = findViewById(R.id.btn_signUp);
         btnSignUp.setOnClickListener(this);
 
-        this.userViewModel = UserViewModel.getInstance();
+
     }
 
     @Override
@@ -48,11 +48,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         if (view != null){
             switch (view.getId()){
                 case R.id.btn_signUp: {
-                    if (this.validateData()){
+                    if (this.validateData()) {
                         //save data to database
                         this.saveUserToDB();
-                        //go to main activity
-                        this.goToMain();
+                        //go to Home screen
+                        this.goToLogin();
                     }
                 }
                 default: break;
@@ -69,22 +69,18 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         newUser.setCarPlateNo(this.edCarPlateNo.getText().toString());
         newUser.setContactNo(this.edContactNo.getText().toString());
         newUser.setActive(true);
-
-        //Save User to DB
         this.userViewModel.addUser(newUser);
+        Toast.makeText(this, "User Registered Successfully.", Toast.LENGTH_SHORT).show();
     }
 
 
-    private void goToMain(){
+    private void goToLogin() {
         this.finish();
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
     }
 
     private Boolean validateData(){
-
         if (this.edFirstName.getText().toString().isEmpty()){
-            this.edFirstName.setError("Please enter firstname");
+            this.edFirstName.setError("Please enter First name");
             return false;
         }
 

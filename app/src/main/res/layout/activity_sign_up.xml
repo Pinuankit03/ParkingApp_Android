@@ -4,94 +4,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/screenBg"
     tools:context=".activity.SignUpActivity">
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></ImageView>
 
     <EditText
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/ed_firstName"
         android:layout_marginStart="8dp"
-        android:background="@drawable/edittext"
+        android:drawableTint="@color/white"
+        android:textColorHint="@color/white"
         android:layout_marginEnd="8dp"
         android:hint="First Name"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
         android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/img"
         android:padding="8dp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="15dp" />
 
     <EditText
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/ed_lastName"
         android:layout_marginStart="8dp"
-        android:background="@drawable/edittext"
+        android:drawableTint="@color/white"
+        android:textColorHint="@color/white"
         android:layout_marginEnd="8dp"
         android:hint="Last Name"
+        android:textSize="18sp"
         android:inputType="text"
         app:layout_constraintTop_toBottomOf="@id/ed_firstName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/white"
         android:padding="8dp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="15dp" />
 
     <EditText
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/ed_email"
         android:layout_marginStart="8dp"
-        android:background="@drawable/edittext"
+        android:drawableTint="@color/white"
+        android:textColorHint="@color/white"
         android:layout_marginEnd="8dp"
         android:hint="Email"
+        android:textSize="18sp"
         android:inputType="textEmailAddress"
         app:layout_constraintTop_toBottomOf="@id/ed_lastName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/white"
         android:padding="8dp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="15dp" />
 
     <EditText
         android:id="@+id/ed_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:background="@drawable/edittext"
+        android:drawableTint="@color/white"
+        android:textColorHint="@color/white"
         android:layout_marginEnd="8dp"
         android:hint="Password"
         android:inputType="textPassword"
+        android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@id/ed_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/white"
         android:padding="8dp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="15dp" />
 
     <EditText
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/ed_confPassword"
         android:layout_marginStart="8dp"
-        android:background="@drawable/edittext"
+        android:drawableTint="@color/white"
+        android:textColorHint="@color/white"
         android:layout_marginEnd="8dp"
         android:hint="Confirm Password"
         android:inputType="textPassword"
         app:layout_constraintTop_toBottomOf="@id/ed_password"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/white"
         android:padding="8dp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="15dp" />
 
     <EditText
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/ed_carPlateNo"
+        android:drawableTint="@color/white"
         android:layout_marginStart="8dp"
-        android:background="@drawable/edittext"
+        android:textColorHint="@color/white"
+        android:textSize="18sp"
         android:layout_marginEnd="8dp"
         android:hint="Car Plate No."
         android:inputType="text"
@@ -100,23 +123,25 @@
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/white"
         android:padding="8dp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="15dp" />
 
     <EditText
         android:id="@+id/ed_contactNo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:background="@drawable/edittext"
+        android:drawableTint="@color/white"
+        android:textColorHint="@color/white"
         android:layout_marginEnd="8dp"
         android:hint="Contact No."
+        android:textSize="18sp"
         android:inputType="number"
         app:layout_constraintTop_toBottomOf="@id/ed_carPlateNo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/white"
         android:padding="8dp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="15dp" />
 
     <Button
         android:id="@+id/btn_signUp"
@@ -124,9 +149,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:fontFamily="serif"
-        android:padding="3dp"
+        android:backgroundTint="@color/colorPrimary"
         android:text="@string/sign_up"
         android:textColor="@color/white"
+        android:padding="8dp"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.AddParkingFragment">
+    tools:context=".fragment.AddParkingFragment">
 
 
     <EditText
@@ -14,10 +14,10 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp"
-        android:hint="Enter car plate no"
+        android:hint="@string/enter_car_plate_no"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></EditText>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/edBuildingCode"
@@ -26,10 +26,10 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp"
-        android:hint="Enter building code"
+        android:hint="@string/enter_building_code"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edCarPlateNo"></EditText>
+        app:layout_constraintTop_toBottomOf="@+id/edCarPlateNo" />
 
     <TextView
         android:id="@+id/txtHours"
@@ -38,11 +38,11 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp"
-        android:text="How many hours do you want to park?"
+        android:text="@string/how_many_hours_do_you_want_to_park"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edBuildingCode"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/edBuildingCode" />
 
     <Spinner
         android:id="@+id/spinnerHours"
@@ -50,14 +50,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtHours"
         android:entries="@array/hours_arrays"
         android:prompt="@string/hour_prompt"/>
-
 
 
     <EditText
@@ -67,10 +66,10 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:hint="Enter No of Host"
+        android:hint="@string/enter_no_of_host"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerHours"></EditText>
+        app:layout_constraintTop_toBottomOf="@+id/spinnerHours" />
 
     <TextView
         android:id="@+id/txtAdd"
@@ -79,11 +78,11 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp"
-        android:text="Parking Address"
+        android:text="@string/parking_address"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edNoOfHost"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/edNoOfHost" />
 
     <EditText
         android:id="@+id/edParkingAddress"
@@ -92,37 +91,38 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:hint="Enter Parking Address"
+        android:hint="@string/enter_parking_address"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtAdd"></EditText>
+        app:layout_constraintTop_toBottomOf="@+id/txtAdd" />
 
     <TextView
         android:id="@+id/txtOR"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:gravity="center"
-        android:text="OR"
+        android:text="@string/or"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edParkingAddress"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/edParkingAddress" />
 
     <Button
         android:id="@+id/btnCurrentLoc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Current Location"
+        android:layout_marginTop="20dp"
         android:textSize="18sp"
+        android:padding="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtOR"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="15dp"
+        android:text="@string/use_current_location"
         android:layout_marginEnd="30dp"/>
 
 
@@ -130,18 +130,18 @@
         android:id="@+id/btnAddParking"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:fontFamily="serif"
-        android:padding="3dp"
-        android:text="Add Parking"
+        android:backgroundTint="@color/colorPrimary"
+        android:padding="5dp"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:text="@string/add_parking"
         android:textStyle="bold"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

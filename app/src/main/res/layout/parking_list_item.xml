@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardViewList"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
     android:elevation="4dp"
     app:cardCornerRadius="4dp"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
+        android:id="@+id/linearMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:orientation="vertical">
 
     <LinearLayout
@@ -23,30 +23,31 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:drawable/ic_partial_secure"></ImageView>
+            android:background="@drawable/ic_location"
+            android:backgroundTint="@color/black"
+            android:padding="5dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Parking Address :"
             android:textColor="@color/colorPrimary"
-            android:layout_marginLeft="5dp"
-            android:textSize="16dp"/>
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tvParkingAddress"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Parking Address Parking Address Parking Address Parking Address "
+            android:text=""
             android:layout_marginLeft="5dp"
-            android:textSize="16dp"/>
+            android:textSize="16sp" />
 
     </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:orientation="horizontal">
 
             <TextView
@@ -58,11 +59,11 @@
 
             <TextView
                 android:id="@+id/tvParkingDate"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2021-03-01 10:11:11 "
-                android:layout_marginLeft="10dp"
-                android:textSize="16dp"/>
+                android:layout_marginStart="10dp"
+                android:text=""
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -78,15 +79,15 @@
                 android:layout_height="wrap_content"
                 android:text="Parking Hours :"
                 android:textColor="@color/colorPrimary"
-                android:textSize="16dp"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvParkingHours"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="5 Hours "
-                android:layout_marginLeft="10dp"
-                android:textSize="16dp"/>
+                android:layout_marginStart="10dp"
+                android:text=""
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -94,15 +95,15 @@
             android:id="@+id/tvCarPlateNo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="@color/teal_700"
             android:textSize="18sp"
-            android:paddingLeft="10dp"
+            android:paddingLeft="15dp"
             android:paddingBottom="3dp"
             android:paddingTop="3dp"
             android:layout_gravity="center_vertical"
             android:textColor="@color/white"
             android:layout_marginTop="5dp"
-            android:text="Car plate no"></TextView>
+            android:text="" />
     </LinearLayout>
 
 
