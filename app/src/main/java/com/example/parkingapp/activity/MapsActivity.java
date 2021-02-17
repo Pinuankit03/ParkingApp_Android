@@ -22,7 +22,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 //Student Name - Pinalben Patel
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-
     private final String TAG = this.getClass().getCanonicalName();
     private final Float DEFAULT_ZOOM = 15.0f;
     private GoogleMap mMap;
