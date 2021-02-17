@@ -30,6 +30,7 @@ public class UserRepository {
         db = FirebaseFirestore.getInstance();
     }
 
+    //adding new user into firestore db while sign up
     public void addUser(User user){
         try {
             db.collection(COLLECTION_NAME_USER)
@@ -47,16 +48,18 @@ public class UserRepository {
                         }
                     });
 
-        }catch (Exception ex){
+        } catch (Exception ex) {
             Log.e(TAG, ex.toString());
             Log.e(TAG, ex.getLocalizedMessage());
         }
     }
 
-    public void getUser(String email, String password){
+    //getting user for credential check while signin
+
+    public void getUser(String email, String password) {
         this.signInStatus.postValue("LOADING");
 
-        try{
+        try {
             db.collection(COLLECTION_NAME_USER)
                     .whereEqualTo("email", email)
 //                    .whereEqualTo("password", password)
@@ -92,6 +95,7 @@ public class UserRepository {
         }
     }
 
+    //getting user data for update profile
     public void getUserById(String userID) {
 
         try {
@@ -114,6 +118,7 @@ public class UserRepository {
         }
     }
 
+    //updating the data into firestore db which user has chnaged.
     public void updateProfile(String userID, User user) {
         try {
             db.collection(COLLECTION_NAME_USER)
@@ -137,6 +142,7 @@ public class UserRepository {
         }
     }
 
+    //updating status while user wants to delete their profile
     public void updateProfileStatus(String userID, Boolean isActive) {
         try {
             db.collection(COLLECTION_NAME_USER)

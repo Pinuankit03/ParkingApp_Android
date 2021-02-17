@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Used for sign out user
     private void logout() {
         new AlertDialog.Builder(MainActivity.this).setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("Logout").setMessage("Are you sure you want to Logout?")

@@ -61,6 +61,8 @@ public class HomeFragment extends Fragment implements OnParkingClickListener {
 
 
         this.parkingViewModel.getAllParking(this.userID);
+
+        //getting updated parking list which is user already booked.
         this.parkingViewModel.getParkingRepository().parkingItems.observe(getActivity(), new Observer<List<Parking>>() {
             @Override
             public void onChanged(List<Parking> parkingsList) {

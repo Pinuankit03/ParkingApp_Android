@@ -37,6 +37,7 @@ public class ParkingRepository {
         this.db = FirebaseFirestore.getInstance();
     }
 
+    //adding parking into firestore for particular user
     public void addParkingItem(String userID, Parking parking) {
         try {
             db.collection(COLLECTION_NAME_USER)
@@ -61,6 +62,8 @@ public class ParkingRepository {
             Log.e(TAG, ex.getLocalizedMessage());
         }
     }
+
+    //getting all parking that user booked
 
     public void getAllParking(String userID) {
         try {
@@ -109,6 +112,7 @@ public class ParkingRepository {
         }
     }
 
+    //getting  parking which user selected from list
     public void getEachParking(String userID, String parkingID) {
         try {
             db.collection(COLLECTION_NAME_USER)

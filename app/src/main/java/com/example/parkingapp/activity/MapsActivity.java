@@ -92,6 +92,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    //set google map custom settings
     private void setupGoogleMapScreenSetting(GoogleMap gMap) {
         gMap.setBuildingsEnabled(true);
         gMap.setIndoorEnabled(true);

@@ -64,6 +64,8 @@ public class ParkingDetailActivity extends AppCompatActivity implements View.OnC
         // Log.e("ID", "parking id in detail: " + parkingID);
         //Log.e("userID", "userID: " + userID);
         parkingViewModel.getEachParking(userID, parkingID);
+
+        //getting updated data for selected parking
         this.parkingViewModel.getParkingRepository().eachParking.observe(this, new Observer<Parking>() {
             @Override
             public void onChanged(Parking parking) {

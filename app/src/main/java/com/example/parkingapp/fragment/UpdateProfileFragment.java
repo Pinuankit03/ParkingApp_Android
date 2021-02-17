@@ -54,6 +54,8 @@ public class UpdateProfileFragment extends Fragment implements View.OnClickListe
 //        Log.e("userID update profile", userID);
 
         this.userViewModel.getUserByID(userID);
+
+        //getting user live data for display into update profile.
         this.userViewModel.getUserRepository().userData.observe(getActivity(), new Observer<User>() {
             @Override
             public void onChanged(User user) {
