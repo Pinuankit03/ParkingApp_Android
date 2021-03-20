@@ -1,6 +1,10 @@
 # ParkingApp
 Created by : Pinalben Patel
 
+App Preview - 
+https://user-images.githubusercontent.com/70823359/111853576-f5f67e00-88f1-11eb-9ad1-2312201a98e2.mov
+
+
 Use Cloud Firestore for data persistence in ParkingApp.
 Use cases : Table - User
                   - Parking
@@ -28,3 +32,4 @@ Functionality - View Parking
 This facility will allow the user to view the list of all the parking they have made. displaying the list with most recent parking first.
 displaying the detail view of each parking when user taps on any item of the list. When displaying detail view, display all the information about the parking in appropriate format. In the detail view of parking, 
 allowed the user to view their parking location on map.
+
